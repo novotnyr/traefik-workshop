@@ -1,0 +1,14 @@
+---
+- become: true
+  hosts: all
+
+  tasks:
+    - name: Sync Nginx Site config
+      ansible.builtin.copy:
+        src: etc/nginx/sites-available/dander.btcmp.net
+        dest: /etc/nginx/sites-available/
+    - name: Restart Nginx
+      ansible.builtin.systemd:
+        state: restarted
+        daemon_reload: yes
+        name: nginx

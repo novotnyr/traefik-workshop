@@ -1,0 +1,14 @@
+---
+- become: true
+  hosts: all
+
+  tasks:
+    - name: Create directory
+      ansible.builtin.file:
+        path: /opt/febe/be
+        state: directory
+    - name: Deploy backend
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /opt/febe/be
+      with_fileglob: "{{ mvn_target }}/*.jar"

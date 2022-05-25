@@ -1,0 +1,9 @@
+---
+- become: true
+  hosts: all
+
+  tasks:
+    - name: Deploy Frontend (FE)
+      ansible.builtin.copy:
+        src: "{{ fe_dist }}"
+        dest: /home/winston/www/

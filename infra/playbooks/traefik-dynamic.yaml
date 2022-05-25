@@ -1,0 +1,32 @@
+http:
+  routers:
+    frontend:
+      rule: Host(`dander.btcmp.net`)
+      entryPoints:
+        - web443
+      service: angular
+      tls:
+        certResolver: acmeResolver
+    backend:
+      rule: 'Host(`dander.btcmp.net`) && PathPrefix(`/api/v1`)'
+      entryPoints:
+        - web443
+      service: spring
+      middlewares:
+        - removeApiV1
+      tls:
+        certResolver: acmeResolver
+  services:
+    angular:
+      loadbalancer:
+        servers:
+          - url: 'http://127.0.0.1:8081'
+    spring:
+      loadbalancer:
+        servers:
+          - url: 'http://127.0.0.1:8888'
+  middlewares:
+    removeApiV1:
+      stripPrefix:
+        prefixes:
+          - "/api/v1"

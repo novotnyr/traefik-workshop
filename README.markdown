@@ -67,35 +67,9 @@ Editneme systemd konfigurak pre sluzbu
 
     vim /etc/systemd/system/traefik.service
 
-Obsah:
+Obsah z tohto repa: 
 
-    [Unit]
-    Description=Traefik Proxy
-    After=network-online.target
-    Wants=network-online.target systemd-networkd-wait-online.service
-    
-    [Service]
-    Restart=on-abnormal
-    
-    User=traefik
-    Group=traefik
-    
-    ExecStart=/opt/traefik/traefik
-    
-    LimitNOFILE=1048576
-    
-    PrivateTmp=true
-    ProtectHome=true
-    ProtectSystem=full
-    ReadWriteDirectories=/etc/traefik/acme
-    
-    CapabilityBoundingSet=CAP_NET_BIND_SERVICE
-    AmbientCapabilities=CAP_NET_BIND_SERVICE
-    NoNewPrivileges=true
-    
-    [Install]
-    WantedBy=multi-user.target
-
+    infra/playbooks/files/etc/systemd/system/traefik.service
 
 Reloadneme nastavenia pre systemd:
 

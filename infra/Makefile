@@ -1,7 +1,7 @@
 all:
 	echo 'Use a specific target'
-sync-config:
-	ansible-playbook -i inventory.ini playbooks/sync-config.yaml
+sync-traefik-config:
+	ansible-playbook -i inventory.ini playbooks/sync-traefik-config.yaml
 sync-nginx-config:
 	ansible-playbook -i inventory.ini playbooks/sync-nginx-config.yaml
 sync-traefik-systemd-config:

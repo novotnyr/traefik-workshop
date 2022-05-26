@@ -7,7 +7,7 @@
       ansible.builtin.copy:
         src: "{{ item }}"
         dest: /etc/traefik/
-      with_fileglob: "traefik*.yaml"
+      with_fileglob: "./etc/traefik/traefik*.yaml"
     - name: Restart Traefik
       ansible.builtin.systemd:
         state: restarted

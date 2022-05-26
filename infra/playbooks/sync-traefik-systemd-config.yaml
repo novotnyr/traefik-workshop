@@ -1,0 +1,14 @@
+---
+- become: true
+  hosts: all
+
+  tasks:
+    - name: Sync Traefik Systemd config
+      ansible.builtin.copy:
+        src: ./etc/systemd/system/traefik.service
+        dest: /etc/systemd/system/traefik.service
+    - name: Restart Traefik
+      ansible.builtin.systemd:
+        state: restarted
+        daemon_reload: yes
+        name: traefik

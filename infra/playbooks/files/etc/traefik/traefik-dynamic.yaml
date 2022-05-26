@@ -5,8 +5,6 @@ http:
       entryPoints:
         - web443
       service: angular
-      tls:
-        certResolver: acmeResolver
     backend:
       rule: 'Host(`dander.btcmp.net`) && PathPrefix(`/api/v1`)'
       entryPoints:
@@ -14,8 +12,6 @@ http:
       service: spring
       middlewares:
         - removeApiV1
-      tls:
-        certResolver: acmeResolver
   services:
     angular:
       loadbalancer:
